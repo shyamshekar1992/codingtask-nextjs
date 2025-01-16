@@ -21,13 +21,23 @@ export default async function handler(req, res) {
       const newComputation = {
         A,
         B,
-        results: {
-          add: A + B,
-          subtract: A - B,
-          multiply: A * B,
-          divide: B !== 0 ? A / B : 'Cannot divide by zero',
-        },
         createdAt: new Date(),
+      };
+
+      // Perform all operations concurrently using Promise.all
+      const [addResult, subtractResult, multiplyResult, divideResult] = await Promise.all([
+        new Promise((resolve) => resolve(A + B)),        // Addition
+        new Promise((resolve) => resolve(A - B)),        // Subtraction
+        new Promise((resolve) => resolve(A * B)),        // Multiplication
+        new Promise((resolve) => resolve(B !== 0 ? (A / B).toFixed(2) : 'Cannot divide by zero')), // Division rounded to 2 decimal places
+      ]);
+
+      // Add results to computation object
+      newComputation.results = {
+        add: addResult,
+        subtract: subtractResult,
+        multiply: multiplyResult,
+        divide: divideResult,
       };
 
       // Insert the new computation into the collection
