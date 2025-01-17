@@ -1,7 +1,7 @@
 "use client"; // This is required for using hooks in a Next.js component
 console.log(
   "MONGODB_URI from environment:",
-  process.env.NEXT_PUBLIC_API_BASE_URL1
+  process.env.NEXT_URI
 );
 
 import React, { useState } from "react";
