@@ -13,6 +13,7 @@
     "mongodb": "^4.8.1",
     "mongoose": "^8.9.5",
     "next": "^15.1.4",
+    "next-auth": "^4.24.11",
     "node-mocks-http": "^1.16.2",
     "postcss": "^8.5.1",
     "react": "^18.2.0",
