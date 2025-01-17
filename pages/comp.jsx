@@ -49,7 +49,7 @@ const CompPage = ({ computations }) => {
 
 // Fetch data on the server side
 export async function getServerSideProps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getComputations`);
+  const res = await fetch('https://main.d3sojnxjwm1p4o.amplifyapp.com/api/getComputations');
   const computations = await res.json();
 
   return {
