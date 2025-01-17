@@ -1,4 +1,5 @@
 "use client"; // This is required for using hooks in a Next.js component
+console.log("MONGODB_URI from environment:", process.env.MONGODB_URI);
 
 import React, { useState } from "react";
 import axios from "axios";
