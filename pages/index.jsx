@@ -121,7 +121,7 @@ function Home() {
                 className="w-16 h-16 rounded-full mx-auto mt-2"
               />
               <button
-                onClick={() => signOut({ callbackUrl: "https://main.d3sojnxjwm1p4o.amplifyapp.com/" })}
+                onClick={() => signOut({ callbackUrl: process.env.NEXT_PUBLIC_BASE_URL5 })}
                 className="mt-4 py-2 px-4 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
               >
                 Logout
@@ -132,7 +132,7 @@ function Home() {
             <div>
               <h1 className="text-xl font-bold text-gray-800">Welcome, Guest!</h1>
               <button
-                onClick={() => signIn("github", { callbackUrl: "https://main.d3sojnxjwm1p4o.amplifyapp.com/api/auth/callback/github/" })}
+                onClick={() => signIn("github", { callbackUrl: process.env.NEXT_PUBLIC_BASE_URL6})}
                 className="mt-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 Sign In with GitHub
