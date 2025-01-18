@@ -16,11 +16,22 @@ import { signIn, signOut } from "next-auth/react";
 const validationSchema = Yup.object().shape({
   A: Yup.number()
     .required("Number A is required")
-    .typeError("Number A must be a valid number"),
+    .typeError("Number A must be a valid number")
+    .test(
+      "is-decimal",
+      "Number A must be a valid decimal number",
+      (value) => !isNaN(value) // Checks if the value is a valid number
+    ),
   B: Yup.number()
     .required("Number B is required")
-    .typeError("Number B must be a valid number"),
+    .typeError("Number B must be a valid number")
+    .test(
+      "is-decimal",
+      "Number B must be a valid decimal number",
+      (value) => !isNaN(value)
+    ),
 });
+
 
 function Home() {
   const { data: session } = useSession(); // Fetch session data
@@ -110,7 +121,7 @@ function Home() {
                 className="w-16 h-16 rounded-full mx-auto mt-2"
               />
               <button
-                onClick={() => signOut({ callbackUrl: "https://main.d3sojnxjwm1p4o.amplifyapp.com" })}
+                onClick={() => signOut({ callbackUrl: "https://main.d3sojnxjwm1p4o.amplifyapp.com/" })}
                 className="mt-4 py-2 px-4 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
               >
                 Logout
@@ -121,7 +132,7 @@ function Home() {
             <div>
               <h1 className="text-xl font-bold text-gray-800">Welcome, Guest!</h1>
               <button
-                onClick={() => signIn("github", { callbackUrl: "https://main.d3sojnxjwm1p4o.amplifyapp.com" })}
+                onClick={() => signIn("github", { callbackUrl: "https://main.d3sojnxjwm1p4o.amplifyapp.com/api/auth/callback/github/" })}
                 className="mt-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 Sign In with GitHub
@@ -144,6 +155,7 @@ function Home() {
                     <input
                       id="A"
                       type="number"
+                      step="0.01" // Restrict to two decimal places
                       placeholder="Enter number A"
                       {...field}
                       className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -165,6 +177,7 @@ function Home() {
                   render={({ field }) => (
                     <input
                       id="B"
+                      step="0.01" // Restrict to two decimal places
                       type="number"
                       placeholder="Enter number B"
                       {...field}
