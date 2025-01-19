@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project is a full-stack web application built using Next.js for the frontend and MongoDB as the primary database. The project integrates GitHub OAuth for user authentication and incorporates advanced schema validation techniques using Yup on the frontend and Zod on the backend. The application is styled with Tailwind CSS, ensuring a modern and responsive UI. Hosting is managed through AWS Amplify, and the application can be containerized and run using Docker.
+This project is a full-stack web application built using Next.js for the frontend and MongoDB as the primary database. The project integrates GitHub OAuth for user authentication and incorporates advanced schema validation techniques using Yup for validation. The application is styled with Tailwind CSS, ensuring a modern and responsive UI. Hosting is managed through AWS Amplify, and the application can be containerized and run using Docker.
 
 ## Key Features
 
@@ -12,7 +12,6 @@ This project is a full-stack web application built using Next.js for the fronten
 - Responsive design powered by Tailwind CSS.
 
 ### Backend:
-- Schema validation using Zod for type safety.
 - Integration with MongoDB for robust database management.
 
 ### Authentication:
@@ -50,12 +49,12 @@ Create a `.env.local` file in the root of the project and configure the followin
 get mongodb atlas connection
 NEXT_PUBLIC_BASE_URL1=
 
-Create with github
+Create keys with github
 NEXT_PUBLIC_BASE_GITUSER=
 NEXT_PUBLIC_BASE_GITPASS=
 NEXT_PUBLIC_BASE_SECRET=
 
-
+For running in local server
 NEXT_PUBLIC_BASE_URL=http://localhost:3000/
 NEXTAUTH_URL=http://localhost:3000/
 
@@ -96,9 +95,8 @@ Selected as the primary database for its flexibility and scalability to manage a
 ### GitHub OAuth:
 Implemented for secure user authentication and reduced friction for users.
 
-### Yup and Zod for Validation:
-- **Frontend:** Yup simplifies form validation with a declarative syntax.
-- **Backend:** Zod ensures runtime validation and type safety.
+### Yup  for Validation:
+ Yup simplifies form validation with a declarative syntax.
 
 ### Tailwind CSS:
 Adopted for its utility-first approach, allowing rapid styling and customization.
