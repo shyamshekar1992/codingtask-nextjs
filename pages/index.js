@@ -28,14 +28,17 @@ const validationSchema = Yup.object().shape({
     }),
 });
 
-
 function Home() {
-  const { control, handleSubmit, formState: { errors } } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: {
-      A: "", 
+      A: "",
       B: "",
-    }
+    },
   });
 
   const [results, setResults] = useState({
@@ -67,7 +70,10 @@ function Home() {
       const interval = setInterval(() => {
         if (currentProgress < 4) {
           const operation = Object.keys(computationResults)[currentProgress];
-          setResults((prev) => ({ ...prev, [operation]: computationResults[operation] }));
+          setResults((prev) => ({
+            ...prev,
+            [operation]: computationResults[operation],
+          }));
           setProgress((++currentProgress / 4) * 100);
           setStatus(`Computing... ${currentProgress} of 4 jobs done`);
         } else {
@@ -88,17 +94,29 @@ function Home() {
       <div className="flex items-center justify-center">
         <AuthButtons />
       </div>
-      <div className="min-h-screen flex justify-center">
-        <div className="max-w-xl w-half p-6 bg-white rounded-xl shadow-md">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <div className="flex space-x-4">
-              <NumberInput name="A" control={control} error={errors.A} placeholder="Enter number A" />
-              <NumberInput name="B" control={control} error={errors.B} placeholder="Enter number B" />
-              <SubmitButton computing={computing} />
-            </div>
-            {computing && <ProgressBar progress={progress} status={status} />}
-            <ResultsDisplay results={results} />
-          </form>
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="min-h-screen flex items-start justify-center bg-gray-100 py-12">
+          <div className="max-w-xl w-full p-6 bg-white rounded-xl shadow-md">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <div className="flex space-x-4">
+                <NumberInput
+                  name="A"
+                  control={control}
+                  error={errors.A}
+                  placeholder="Enter number A"
+                />
+                <NumberInput
+                  name="B"
+                  control={control}
+                  error={errors.B}
+                  placeholder="Enter number B"
+                />
+                <SubmitButton computing={computing} />
+              </div>
+              {computing && <ProgressBar progress={progress} status={status} />}
+              <ResultsDisplay results={results} />
+            </form>
+          </div>
         </div>
       </div>
     </>
