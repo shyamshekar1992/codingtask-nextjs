@@ -1,4 +1,3 @@
-// pages/_app.js
 import React from 'react'; // Ensure React is imported
 import './styles/globals.css'; // Import global CSS here
 import { SessionProvider } from "next-auth/react";

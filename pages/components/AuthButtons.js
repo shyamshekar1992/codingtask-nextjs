@@ -21,7 +21,7 @@ function AuthButtons() {
           onSignIn={() =>
             signIn("github", {
               redirect: true,
-              callbackUrl: process.env.NEXT_PUBLIC_BASE_URL6,
+              callbackUrl: process.env.NEXT_PUBLIC_BASE_URL,
             })
           }
         />

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import axios from "axios";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import AuthButtons from "./components/AuthButtons";
@@ -10,17 +10,30 @@ import NumberInput from "./components/NumberInput";
 import ProgressBar from "./components/ProgressBar";
 import ResultsDisplay from "./components/ResultsDisplay";
 import SubmitButton from "./components/SubmitButton";
-// Validation schema
+
 const validationSchema = Yup.object().shape({
-  A: Yup.number().required("Number A is required").typeError("Invalid number"),
-  B: Yup.number().required("Number B is required").typeError("Invalid number"),
+  A: Yup.string()
+    .required("A is required")
+    .test("is-valid-number", "A must be a valid number", (value) => {
+      // Check if it's a valid number using parseFloat
+      const parsedValue = parseFloat(value);
+      return !isNaN(parsedValue) && /^[+-]?\d*\.?\d+$/.test(value);
+    }),
+  B: Yup.string()
+    .required("B is required")
+    .test("is-valid-number", "B must be a valid number", (value) => {
+      // Check if it's a valid number using parseFloat
+      const parsedValue = parseFloat(value);
+      return !isNaN(parsedValue) && /^[+-]?\d*\.?\d+$/.test(value);
+    }),
 });
+
 
 function Home() {
   const { control, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: {
-      A: "", // Ensure initial controlled state
+      A: "", 
       B: "",
     }
   });

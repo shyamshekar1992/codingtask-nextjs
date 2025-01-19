@@ -1,7 +1,7 @@
 import React from "react";
 
 const ResultsDisplay = ({ results }) => {
-  // Handle cases where results is undefined, null, or not an object
+    
   if (!results || typeof results !== "object" || Object.keys(results).length === 0) {
     return <p className="text-gray-500">No results available</p>;
   }

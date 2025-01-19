@@ -1,7 +1,7 @@
 import React from "react";
 
 const SubmitButton = ({ computing }) => (
-  <div className="mt-2">
+  <div>
     <button
       disabled={computing}
       type="submit"
