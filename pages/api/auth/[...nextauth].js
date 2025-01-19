@@ -9,8 +9,13 @@ const Githublogin = process.env.NEXT_PUBLIC_BASE_URL2
 ;
 const Githubpass = process.env.NEXT_PUBLIC_BASE_URL3
 ;
-const secretnextkey = process.env.NEXT_PUBLIC_BASE_URL4
+const secretnextkey = process.env.NEXT_PUBLIC_BASE_URL1
 ;
+
+if (!Githublogin || !Githubpass || !secretnextkey) {
+  throw new Error("Missing required environment variables. Check your .env file.");
+}
+
 export const authOptions = {
   providers: [
     GitHubProvider({
@@ -18,7 +23,18 @@ export const authOptions = {
       clientSecret: Githubpass,
     }),
   ],
-  secret: secretnextkey, // Add a secret for signing cookies
+  secret: secretnextkey,
+  session: {
+    strategy: "jwt",
+    maxAge: 24 * 60 * 60,
+  },
+  callbacks: {
+    async signOut({ token }) {
+      console.log(`User ${token?.email} has logged out.`);
+      return true;
+    },
+  },
+  debug: true,
 };
 
 export default NextAuth(authOptions);

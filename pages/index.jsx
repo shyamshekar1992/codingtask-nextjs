@@ -1,8 +1,5 @@
 "use client"; // This is required for using hooks in a Next.js component
-console.log(
-  "MONGODB_URI from environment:",
-  process.env.NEXT_URI
-);
+console.log("MONGODB_URI from environment:", process.env.NEXT_URI);
 
 import React, { useState } from "react";
 import axios from "axios";
@@ -31,7 +28,6 @@ const validationSchema = Yup.object().shape({
       (value) => !isNaN(value)
     ),
 });
-
 
 function Home() {
   const { data: session } = useSession(); // Fetch session data
@@ -105,43 +101,53 @@ function Home() {
 
   return (
     <>
-     <div className="flex items-center justify-center">
-      <div className="max-w-m w-full p-6 bg-white rounded-xl shadow-md">
-        {/* Welcome Message and Conditional Buttons */}
-        <div className="mb-4 text-center">
-          {session ? (
-            // If user is logged in
-            <div>
-              <h1 className="text-xl font-bold text-gray-800">
-                Welcome, {session.user.name}!
-              </h1>
-              <img
-                src={session.user.image}
-                alt="User Avatar"
-                className="w-16 h-16 rounded-full mx-auto mt-2"
-              />
-              <button
-                onClick={() => signOut({ callbackUrl: process.env.NEXT_PUBLIC_BASE_URL5 })}
-                className="mt-4 py-2 px-4 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
-              >
-                Logout
-              </button>
-            </div>
-          ) : (
-            // If user is not logged in
-            <div>
-              <h1 className="text-xl font-bold text-gray-800">Welcome, Guest!</h1>
-              <button
-                onClick={() => signIn("github", { callbackUrl: process.env.NEXT_PUBLIC_BASE_URL6})}
-                className="mt-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                Sign In with GitHub
-              </button>
-            </div>
-          )}
+      <div className="flex items-center justify-center">
+        <div className="max-w-m w-full p-6 bg-white rounded-xl shadow-md">
+          {/* Welcome Message and Conditional Buttons */}
+          <div className="mb-4 text-center">
+            {session ? (
+              // If user is logged in
+              <div>
+                <h1 className="text-xl font-bold text-gray-800">
+                  Welcome, {session.user.name}!
+                </h1>
+                <img
+                  src={session.user.image}
+                  alt="User Avatar"
+                  className="w-16 h-16 rounded-full mx-auto mt-2"
+                />
+                <button
+                  //                  onClick={() => signOut({ callbackUrl: process.env.NEXT_PUBLIC_BASE_URL5 })}
+                  onClick={() =>
+                    signOut({ callbackUrl: "/" })
+                  }
+                  className="mt-4 py-2 px-4 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              // If user is not logged in
+              <div>
+                <h1 className="text-xl font-bold text-gray-800">
+                  Welcome, Guest!
+                </h1>
+                <button
+                  onClick={() =>
+                    signIn("github", {
+                      redirect: true,
+                      callbackUrl: process.env.NEXT_PUBLIC_BASE_URL6,
+                    })
+                  }
+                  className="mt-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  Sign In with GitHub
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
       <div className="min-h-screen flex items-center justify-center">
         <div className="max-w-xl w-full p-6 bg-white rounded-xl shadow-md">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -197,9 +203,13 @@ function Home() {
                 <button
                   disabled={computing}
                   type="submit"
-                  className="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={`w-full py-2 px-4 text-white font-semibold rounded-md focus:outline-none focus:ring-2 ${
+                    computing
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-blue-500 hover:bg-blue-600"
+                  }`}
                 >
-                  Compute
+                  {computing ? "Computing..." : "Compute"}
                 </button>
               </div>
             </div>
