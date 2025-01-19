@@ -1,5 +1,5 @@
-import React from 'react'; // Ensure React is imported
-import './styles/globals.css'; // Import global CSS here
+import React from "react";
+import "./styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 
 function MyApp({ Component, pageProps }) {

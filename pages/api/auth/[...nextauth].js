@@ -1,16 +1,13 @@
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 
-
-const Githublogin = process.env.NEXT_PUBLIC_BASE_GITUSER
-;
-const Githubpass = process.env.NEXT_PUBLIC_BASE_GITPASS
-;
-const secretnextkey = process.env.NEXT_PUBLIC_BASE_SECRET
-;
-
+const Githublogin = process.env.NEXT_PUBLIC_BASE_GITUSER;
+const Githubpass = process.env.NEXT_PUBLIC_BASE_GITPASS;
+const secretnextkey = process.env.NEXT_PUBLIC_BASE_SECRET;
 if (!Githublogin || !Githubpass || !secretnextkey) {
-  throw new Error("Missing required environment variables. Check your .env file.");
+  throw new Error(
+    "Missing required environment variables. Check your .env file."
+  );
 }
 
 export const authOptions = {

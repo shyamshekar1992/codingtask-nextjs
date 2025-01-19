@@ -23,9 +23,7 @@ const NumberInput = ({ name, control, error, placeholder }) => {
           />
         )}
       />
-      {error && (
-        <p className="text-red-500 text-xs mt-2">{error.message}</p>
-      )}
+      {error && <p className="text-red-500 text-xs mt-2">{error.message}</p>}
     </div>
   );
 };
