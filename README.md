@@ -1,94 +1,156 @@
-## Example app using MongoDB
+Project ReadMe
 
-[MongoDB](https://www.mongodb.com/) is a general purpose, document-based, distributed database built for modern application developers and for the cloud era. This example will show you how to connect to and use MongoDB as your backend for your Next.js app.
+Project Overview
 
-Tutorial Link: [How to Integrate MongoDB Into Your Next.js App](https://www.mongodb.com/developer/languages/javascript/nextjs-with-mongodb/)
+This project is a full-stack web application built using Next.js for the frontend and MongoDB as the primary database. The project integrates GitHub OAuth for user authentication and incorporates advanced schema validation techniques using Yup on the frontend and Zod on the backend. The application is styled with Tailwind CSS, ensuring a modern and responsive UI. Hosting is managed through AWS Amplify, and the application can be containerized and run using Docker.
 
-If you want to learn more about MongoDB, visit the following pages:
+Key Features
 
-- [MongoDB Atlas](https://mongodb.com/atlas)
-- [MongoDB Documentation](https://docs.mongodb.com/)
+Frontend:
 
-## Deploy your own
+Built with Next.js for a seamless user experience.
 
-Once you have access to the environment variables you'll need, deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+Form validation using Yup.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?project-name=with-mongodb&repository-name=with-mongodb&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-mongodb&integration-ids=oac_jnzmjqM10gllKmSrG0SGrHOH)
+Responsive design powered by Tailwind CSS.
 
-## How to use
+Backend:
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+Schema validation using Zod for type safety.
 
-```bash
-npx create-next-app --example with-mongodb mflix
-```
+Integration with MongoDB for robust database management.
 
-```bash
-yarn create next-app --example with-mongodb mflix
-```
+Authentication:
 
-```bash
-pnpm create next-app --example with-mongodb mflix
-```
+GitHub OAuth for secure and convenient login.
 
-After that navigate to the project directory by running
-```
-cd mflix
-```
+Hosting:
 
-And then install all the npm dependencies by running:
-```
-npm install
-```
+Hosted on AWS Amplify for scalability and reliability.
 
-## Configuration
+Containerization:
 
-### Set up a MongoDB database
+Supports Docker for containerized deployments.
 
-Set up a MongoDB database either locally or with [MongoDB Atlas for free](https://mongodb.com/atlas).
+Prerequisites
 
-### Set up environment variables
+Node.js (v14 or later)
 
-Copy the `env.local.example` file in this directory to `.env.local` (which will be ignored by Git):
+Yarn package manager
 
-```bash
-cp .env.local.example .env.local
-```
+Docker (optional for containerized deployment)
 
-Set each variable on `.env.local`:
+Installation and Setup
 
-- `MONGODB_URI` - Your MongoDB connection string. If you are using [MongoDB Atlas](https://mongodb.com/atlas) you can find this by clicking the "Connect" button for your cluster.
+1. Clone the Repository
 
-### Run Next.js in development mode
+ git clone https://github.com/mongodb-developer/nextjs-with-mongodb
+ cd nextjs-with-mongodb
 
-```bash
-npm install
-npm run dev
+2. Install Dependencies
 
-# or
+ yarn install
 
-yarn install
-yarn dev
-```
+3. Configure Environment Variables
 
-Your app should be up and running on [http://localhost:3000](http://localhost:3000)! If it doesn't work, post on [GitHub discussions](https://github.com/vercel/next.js/discussions).
+Create a .env.local file in the root of the project and configure the following variables:
 
-You will either see a message stating "You are connected to MongoDB" or "You are NOT connected to MongoDB". Ensure that you have provided the correct `MONGODB_URI` environment variable.
+NEXT_PUBLIC_MONGO_URI=<Your MongoDB URI>
+NEXT_PUBLIC_GITHUB_CLIENT_ID=<Your GitHub OAuth Client ID>
+NEXT_PUBLIC_GITHUB_CLIENT_SECRET=<Your GitHub OAuth Client Secret>
+AMPLIFY_API_KEY=<Your Amplify API Key>
+NEXT_PUBLIC_BASE_URL1=mongodb+srv://shyamshekar1992:FffTiZhFHT4ovt2Y@cluster0.071ac.mongodb.net/
+# NEXT_PUBLIC_BASE_URL=https://main.d3sojnxjwm1p4o.amplifyapp.com/
 
-When you are successfully connected, you can refer to the [MongoDB Node.js Driver docs](https://mongodb.github.io/node-mongodb-native/3.4/tutorials/collections/) for further instructions on how to query your database.
+# NEXT_PUBLIC_API_BASE_URL=https://main.d3sojnxjwm1p4o.amplifyapp.com
+NEXT_PUBLIC_BASE_URL2=Ov23lirNlQFDDMRJqlMR
+NEXT_PUBLIC_BASE_URL3=bcfdae98ad86efaec0176968d8a1828cac9a83fa
+NEXT_PUBLIC_BASE_URL4=f2e4a1d8c6f04b2a85c7e1d6c7e4b5a8f1d2c3e4f5a7c9e0d1b6f4e3c2a5d8b2
+# NEXT_PUBLIC_BASE_URL5=https://main.d3sojnxjwm1p4o.amplifyapp.com/
+# NEXT_PUBLIC_BASE_URL6=https://main.d3sojnxjwm1p4o.amplifyapp.com/
+# NEXTAUTH_URL=https://main.d3sojnxjwm1p4o.amplifyapp.com
+NEXT_PUBLIC_BASE_URL5=http://localhost:3000/
+NEXT_PUBLIC_BASE_URL6=http://localhost:3000/
+NEXTAUTH_URL=http://localhost:3000/
 
-## Deploy on Vercel
+4. Start the Development Server
 
-You can deploy this app to the cloud with [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+ yarn dev
 
-#### Deploy Your Local Project
+Building and Running the Project
 
-To deploy your local project to Vercel, push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example).
+1. Build the Project
 
-**Important**: When you import your project on Vercel, make sure to click on **Environment Variables** and set them to match your `.env.local` file.
+ yarn build
 
-#### Deploy from Our Template
+2. Start the Production Server
 
-Alternatively, you can deploy using our template by clicking on the Deploy button below.
+ yarn start
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?project-name=with-mongodb&repository-name=with-mongodb&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-mongodb&integration-ids=oac_jnzmjqM10gllKmSrG0SGrHOH)
+3. Run with Docker
+
+Build the Docker image and run the container:
+
+ docker build -t testapp .
+ docker run -p 3000:3000 testapp
+
+Architectural Decisions
+
+Next.js for Frontend:
+
+Chosen for its server-side rendering capabilities, ease of development, and robust ecosystem.
+
+MongoDB:
+
+Selected as the primary database for its flexibility and scalability to manage application data.
+
+GitHub OAuth:
+
+Implemented for secure user authentication and reduced friction for users.
+
+Yup and Zod for Validation:
+
+Frontend: Yup simplifies form validation with a declarative syntax.
+
+Backend: Zod ensures runtime validation and type safety.
+
+Tailwind CSS:
+
+Adopted for its utility-first approach, allowing rapid styling and customization.
+
+AWS Amplify:
+
+Offers seamless hosting, CI/CD integration, and scalability for modern web applications.
+
+Docker:
+
+Facilitates containerized deployments, ensuring consistency across environments.
+
+Development Workflow
+
+Clone the repository and configure dependencies.
+
+Run the development server locally using yarn dev.
+
+Build and test using yarn build and yarn start.
+
+Deploy using AWS Amplify or run the containerized application with Docker.
+
+Future Enhancements
+
+Add support for additional OAuth providers.
+
+Implement caching mechanisms for faster API responses.
+
+Enhance test coverage with integration and unit tests.
+
+Add localization support for multilingual users.
+
+Contribution Guidelines
+
+Fork the repository and create a feature branch.
+
+Submit a pull request with detailed documentation of your changes.
+
+Ensure your code adheres to the project's linting and formatting standards.
+
