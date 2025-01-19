@@ -39,10 +39,10 @@ function Home() {
   });
 
   const [results, setResults] = useState({
-    add: "Computing...",
-    subtract: "Computing...",
-    multiply: "Computing...",
-    divide: "Computing...",
+    add: "",
+    subtract: "",
+    multiply: "",
+    divide: "",
   });
 
   const [computing, setComputing] = useState(false);
@@ -53,10 +53,10 @@ function Home() {
     setComputing(true);
     setStatus("Computing...");
     setResults({
-      add: "Computing...",
-      subtract: "Computing...",
-      multiply: "Computing...",
-      divide: "Computing...",
+      add: "Computing",
+      subtract: "Computing",
+      multiply: "Computing",
+      divide: "Computing",
     });
 
     try {
@@ -88,8 +88,8 @@ function Home() {
       <div className="flex items-center justify-center">
         <AuthButtons />
       </div>
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="max-w-xl w-full p-6 bg-white rounded-xl shadow-md">
+      <div className="min-h-screen flex justify-center">
+        <div className="max-w-xl w-half p-6 bg-white rounded-xl shadow-md">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="flex space-x-4">
               <NumberInput name="A" control={control} error={errors.A} placeholder="Enter number A" />
